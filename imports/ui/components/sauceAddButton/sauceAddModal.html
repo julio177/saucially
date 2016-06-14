@@ -1,0 +1,16 @@
+<md-dialog aria-label="New sauce" style="opacity: 1;" ng-cloak>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>New sauce</h2>
+      <span flex></span>
+      <md-button ng-click="sauceAddModal.close()">
+        Close
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <sauce-add done="sauceAddModal.close()"></sauce-add>
+    </div>
+  </md-dialog-content>
+</md-dialog>

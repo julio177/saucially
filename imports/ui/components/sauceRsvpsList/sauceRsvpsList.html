@@ -1,0 +1,7 @@
+How many are going to try your recipe: 
+Yes -
+{{ (sauceRsvpsList.rsvps | filter:{rsvp:'yes'}).length || 0 }}
+Maybe -
+{{ (sauceRsvpsList.rsvps | filter:{rsvp:'maybe'}).length || 0}}
+No -
+{{ (sauceRsvpsList.rsvps | filter:{rsvp:'no'}).length || 0}}

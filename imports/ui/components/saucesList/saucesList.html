@@ -1,0 +1,63 @@
+<div layout="column" layout-padding>
+  <sauce-add-button ng-show="saucesList.isLoggedIn"></sauce-add-button>
+  <div ng-hide="saucesList.isLoggedIn">
+    <i>Log in to submit your own sauce!</i>
+  </div>
+
+  <div flex>
+    <h2 class="md-display-1">List of sauces:</h2>
+  </div>
+
+  <div layout="row" layout-padding>
+    <md-input-container>
+      <label>Search</label>
+       <input ng-model="saucesList.searchText"/>
+    </md-input-container>
+
+    <sauces-sort on-change="saucesList.sortChanged(sort)" property="name" order="1"></sauces-sort>
+  </div>
+
+  <div layout="column" layout-gt-sm="row">
+    <div flex="50">
+      <md-card dir-paginate="sauce in saucesList.sauces | itemsPerPage: saucesList.perPage" total-items="saucesList.saucesCount">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" ui-sref="sauceDetails({ sauceId: sauce._id })">
+              {{sauce.name}}
+              <sauce-remove sauce="sauce" ng-show="saucesList.isOwner(sauce)"></sauce-remove>      
+            </span>
+            <span class="md-subhead">
+              {{sauce.description}}
+            </span>
+          </md-card-title-text>
+          <md-card-title-media ng-if="sauce.images">
+            <div class="md-media-lg card-media">
+              <sauce-image images="sauce.images"></sauce-image>
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-content>
+          <sauce-rsvps-list rsvps="sauce.rsvps"></sauce-rsvps-list>
+
+          <sauce-unanswered sauce="sauce" ng-if="!sauce.public"></sauce-unanswered>
+          <div ng-if="sauce.public">
+            Public recipe!
+          </div>
+
+          <sauce-creator sauce="sauce"></sauce-creator>  
+        </md-card-content>
+        <md-card-actions>
+          <sauce-rsvp sauce="sauce" ng-show="saucesList.isLoggedIn"></sauce-rsvp>
+
+          <div ng-hide="saucesList.isLoggedIn">
+            <i>Sign in to vote/see this sauce.</i>
+          </div>  
+        </md-card-actions>
+      </md-card>
+      <dir-pagination-controls on-page-change="saucesList.pageChanged(newPageNumber)"></dir-pagination-controls>
+    </div>
+  </div>
+  <div flex="50">
+    <sauces-map sauces="saucesList.sauces"></sauces-map>
+  </div>
+</div>

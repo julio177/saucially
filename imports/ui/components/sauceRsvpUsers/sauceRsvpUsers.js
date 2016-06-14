@@ -1,0 +1,28 @@
+import angular from 'angular';
+import angularMeteor from 'angular-meteor';
+
+import { Meteor } from 'meteor/meteor';
+
+import template from './sauceRsvpUsers.html';
+import { name as DisplayNameFilter } from '../../filters/displayNameFilter';
+
+class SauceRsvpUsers {
+	getUserById(userId) {
+		return Meteor.users.findOne(userId);
+	}
+}
+
+const name = 'sauceRsvpUsers';
+
+export default angular.module(name, [
+  angularMeteor,
+  DisplayNameFilter
+]).component(name, {
+  template,
+  controllerAs: name,
+  bindings: {
+    rsvps: '<',
+    type: '@'
+  },
+  controller: SauceRsvpUsers
+});

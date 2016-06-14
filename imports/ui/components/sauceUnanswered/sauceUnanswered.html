@@ -1,0 +1,5 @@
+<ul>
+  <li ng-repeat="invitedUser in sauceUnanswered.getUnanswered()">
+    {{ sauceUnanswered.getUserById(invitedUser) | displayNameFilter }}
+  </li>
+</ul>

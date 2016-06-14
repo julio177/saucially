@@ -1,0 +1,31 @@
+<div layout="column" layout-padding>
+  <div layout="column" layout-gt-sm="row"  layout-padding>
+    <form flex="50" layout="column">
+      <md-input-container>
+        <label>Sauce name</label>
+        <input ng-model="sauceDetails.sauce.name" ng-disabled="!sauceDetails.isLoggedIn">
+      </md-input-container>
+ 
+      <md-input-container>
+        <label>Description</label>
+        <input ng-model="sauceDetails.sauce.description" ng-disabled="!sauceDetails.isLoggedIn">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Description</label>
+        <input ng-model="sauceDetails.sauce.ingredients" ng-disabled="!sauceDetails.isLoggedIn">
+      </md-input-container>
+ 
+      <div>
+        Public Recipe?<input type="checkbox" ng-model="sauceDetails.sauce.public">
+      </div>
+ 
+      <div>
+        <md-button ng-click="sauceDetails.save()" class="md-primary md-raised">Save</md-button>
+      </div>
+    </form>
+    <sauce-map flex="50" location="sauceDetails.sauce.location"></sauce-map>
+  </div>
+ 
+  <sauce-uninvited sauce="sauceDetails.sauce" ng-show="sauceDetails.canInvite()"></sauce-uninvited>
+</div>

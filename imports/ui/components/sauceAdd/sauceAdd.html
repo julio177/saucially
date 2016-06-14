@@ -1,0 +1,27 @@
+<div layout="column" layout-padding>
+  <md-input-container>
+    <label>
+      Sauce Name:
+    </label>
+    <input type="text" ng-model="sauceAdd.sauce.name"/>
+  </md-input-container>
+  <md-input-container>
+    <label>
+      Description:
+    </label>
+    <input type="text" ng-model="sauceAdd.sauce.description"/>
+  </md-input-container>
+  <md-input-container>
+    <label>
+      Ingredients:
+    </label>
+    <input type="text" ng-model="sauceAdd.sauce.ingredients"/>
+  </md-input-container>
+  <div>
+    Public Recipe?<input type="checkbox" ng-model="sauceAdd.sauce.public">
+  </div>
+  <div flex>
+    <md-button ng-click="sauceAdd.submit()" class="md-raised">Add Sauce!</md-button>
+  </div>
+  <sauce-upload files="sauceAdd.sauce.images"></sauce-upload>
+</div>
